@@ -14,9 +14,9 @@ mysql -u root -proot prestashop < /var/lib/mysql/comptoirs-preprod.2022.09.04-23
 mysql -u root -proot;
 show databases;
 use prestashop;
-UPDATE `ps_configuration` SET `value` = 'localhost' WHERE `ps_configuration`.`id_configuration` = 229;
-UPDATE `ps_configuration` SET `value` = 'localhost' WHERE `ps_configuration`.`id_configuration` = 230;
-UPDATE `ps_shop_url` SET `domain` = 'localhost', `domain_ssl` = 'localhost' WHERE `ps_shop_url`.`id_shop_url` = 1;
+UPDATE `ps_configuration` SET `value` = 'prestashop-cr.local' WHERE `ps_configuration`.`id_configuration` = 229;
+UPDATE `ps_configuration` SET `value` = 'prestashop-cr.local' WHERE `ps_configuration`.`id_configuration` = 230;
+UPDATE `ps_shop_url` SET `domain` = 'prestashop-cr.local', `domain_ssl` = 'prestashop-cr.local' WHERE `ps_shop_url`.`id_shop_url` = 1;
 
 
 
