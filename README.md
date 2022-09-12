@@ -2,6 +2,24 @@
 
 Docker running Nginx, PHP-FPM, Composer, MySQL and PHPMyAdmin.
 
+https://zeropointdevelopment.com/how-to-get-https-working-in-windows-10-localhost-dev-environment/
+Add openssl to PATH : C:\Program Files\Git\mingw64\bin
+openssl genrsa -des3 -out rootSSL.key 2048
+Passphrase = "t2OU3peV8FEGxUrW7E4a"
+
+openssl req -new -sha256 -nodes -out prestashop-cr.local.csr -newkey rsa:2048 -keyout prestashop-cr.key -subj "/C=AU/ST=NSW/L=Sydney/O=Client One/OU=Dev/CN=prestashop-cr.local/emailAddress=hello@prestashop-cr.local"
+openssl x509 -req -in prestashop-cr.local.csr -CA rootSSL.pem -CAkey rootSSL.key -CAcreateserial -out prestashop-cr.local.crt -days 500 -sha256 -extensions "authorityKeyIdentifier=keyid,issuer\n basicConstraints=CA:FALSE\n keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment\n  subjectAltName=DNS:prestashop-cr.local"
+
+mysql -u root -proot prestashop < /var/lib/mysql/comptoirs-preprod.2022.09.04-23.22.51.sql
+mysql -u root -proot;
+show databases;
+use prestashop;
+UPDATE `ps_configuration` SET `value` = 'localhost' WHERE `ps_configuration`.`id_configuration` = 229;
+UPDATE `ps_configuration` SET `value` = 'localhost' WHERE `ps_configuration`.`id_configuration` = 230;
+UPDATE `ps_shop_url` SET `domain` = 'localhost', `domain_ssl` = 'localhost' WHERE `ps_shop_url`.`id_shop_url` = 1;
+
+
+
 ## Overview
 
 1. [Install prerequisites](#install-prerequisites)
